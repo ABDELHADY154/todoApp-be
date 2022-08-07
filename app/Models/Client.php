@@ -19,4 +19,9 @@ class Client extends Model
     {
         return $this->hasMany(Task::class);
     }
+
+    public function checkIns()
+    {
+        return $this->hasMany(CheckIn::class);
+    }
 }

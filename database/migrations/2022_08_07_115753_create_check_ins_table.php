@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('check_ins', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("client_id");
             $table->foreign("client_id")->references("id")->on("clients");
-            $table->string("summary");
-            $table->boolean("completed")->default(false);
-            $table->longText("desc")->nullable();
-            $table->dateTime("due_date")->nullable();
-
+            $table->string("country");
+            $table->string("city");
+            $table->string("long");
+            $table->string("lat");
             $table->softDeletes();
             $table->timestamps();
         });
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('check_ins');
     }
 };

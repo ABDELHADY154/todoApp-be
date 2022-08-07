@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\V1\CheckInController;
 use App\Http\Controllers\API\V1\ClientController;
 use App\Http\Controllers\API\V1\TaskController;
 use Illuminate\Http\Request;
@@ -19,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::post("/login", [ClientController::class, "login"])->name("client.login.api");
 Route::middleware("auth:sanctum")->group(function () {
-    Route::apiResource("/task", TaskController::class)->except(["show"]);
+    Route::apiResource("/task", TaskController::class);
+    Route::apiResource("/checkin", CheckInController::class)->except(["show"]);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
