@@ -6,6 +6,7 @@ use AElnemr\RestFullResponse\CoreJsonResponse;
 use App\Http\Controllers\Controller;
 use App\Models\Client;
 use App\Models\Task;
+use App\Notifications\TaskDueDateNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,6 +49,7 @@ class TaskController extends Controller
         ]);
         $client->last_updated = now();
         $client->save();
+        $client->notify(new TaskDueDateNotification($task));
         return $this->created(["task" => $task]);
     }
 
